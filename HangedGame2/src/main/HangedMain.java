@@ -39,9 +39,9 @@ public class HangedMain {
 		HangedModel dictionary = new HangedModel("words.txt");
 		HangedBoard board = new HangedBoard();
 		String select = "jugar";
-		int replay = 0;
+		boolean isAgain = false;
 		do{
-			if(replay==0){
+			if(!isAgain){
 			UserInterface.showMenuInit(board.getStreak());
 			select = UserInterface.scanMenuInicio();
 			}
@@ -61,9 +61,11 @@ public class HangedMain {
 					switch(ch){
 					case "salir":
 						board.reset();
+						isAgain = false;
 						break;
 					case "reiniciar":
 						board.reset();
+						isAgain = true;
 						break;
 					default:
 						
@@ -85,18 +87,18 @@ public class HangedMain {
 								UserInterface.showMenuAgain(true);
 								char againOption = UserInterface.scanMenuEndGame().toLowerCase().toCharArray()[0];
 								if(againOption=='s'){
-									replay = 1;
+									isAgain = true;
 								}else{
-									replay = 0;
+									isAgain = false;
 									break;
 								}
 							}else if(isGameOver){
 								UserInterface.showMenuAgain(false);
 								char againOption = UserInterface.scanMenuEndGame().toLowerCase().toCharArray()[0];
 								if(againOption=='s'){
-									replay = 1;
+									isAgain = true;
 								}else{
-									replay = 0;
+									isAgain = false;
 									break;
 								}
 							}
